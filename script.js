@@ -1,3 +1,5 @@
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 // Assignment code here
 
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -22,8 +24,8 @@ function getPasswordOptions() {
     length: passwordLength,
     hasUpper: wantsUpper,
     hasLower: wantsLower,
-    hasSpecial: wantsSpecial,
     hasNumber: wantsNumber,
+    hasSpecial: wantsSpecial,
   }
   return userChoices;
 }
@@ -58,17 +60,14 @@ function generatePassword() {
   return userChoices.join("");
 }
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+

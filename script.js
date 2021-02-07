@@ -1,22 +1,57 @@
 // Assignment code here
 
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var numbers = "0123456789";
-var specialCharacters = "~`! @#$%^&*()_-+={[}]|?";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+var numbers = "0123456789".split("");
+var specialCharacters = "~`! @#$%^&*()_-+={[}]|?".split("");
 function generateRandomLetter() {
 
-  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return randomCharacter = upperCase[Math.floor(Math.random() * upperCase.length)]
 }
-var passwordLength
+function getPasswordOptions() {
 
-prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.');
-confirm('Would you like your password to have Uppercase letters?');
-confirm('Would you like your password to have Lowercase letters?');
-confirm('Would you like your password to have Numbers?');
-confirm('Would you like your password to have special characters?');
-alert("Please select at least one option");
+  var passwordLength = parseInt(prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.'));
+  if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
+    alert("Select number within range")
+    return;
+  }
+  var wantsUpper = confirm('Would you like your password to have Uppercase letters?');
+  var wantsLower = confirm('Would you like your password to have Lowercase letters?');
+  var wantsNumber = confirm('Would you like your password to have Numbers?');
+  var wantsSpecial = confirm('Would you like your password to have special characters?');
+  if (!wantsUpper && !wantsLower && !wantsNumber && !wantsSpecial) {
+    alert("Please select at least one option");
+    return;
+  }
+  var userChoices = {
+    length: passwordLength,
+    hasUpper: wantsUpper,
+    hasLower: wantsLower,
+    hasSpecial: wantsSpecial,
+    hasNumber: wantsNumber,
+  }
+  return userChoices
+}
+function generatePassword() {
+  var userOptions = getPasswordOptions()
+  var possibleCharacters = []
+  var garantiedCharacters = []
+  var result = []
+  if (userOptions.hasUpper) {
+    possibleCharacters = possibleCharacters.concat(upperCase)
+  }
+
+
+
+
+
+
+
+
+
+
+}
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -32,6 +67,6 @@ function writePassword() {
 // Add event listener to generate button
 document.getElementById(generate).addEventListener("click", writePassword);
 
-function writePassword() {
-  document.getElementById("generate").innerHTML = password;
-}
+// function writePassword() {
+//   document.getElementById("generate").innerHTML = password;
+// }

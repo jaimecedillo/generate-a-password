@@ -4,12 +4,8 @@ var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "~`! @#$%^&*()_-+={[}]|?".split("");
-function generateRandomLetter() {
-
-  return randomCharacter = upperCase[Math.floor(Math.random() * upperCase.length)]
-}
 function getPasswordOptions() {
-
+  
   var passwordLength = parseInt(prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.'));
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert("Select number within range")
@@ -30,23 +26,30 @@ function getPasswordOptions() {
     hasSpecial: wantsSpecial,
     hasNumber: wantsNumber,
   }
-  return userChoices
+  return userChoices;
 }
 function generatePassword() {
   var userOptions = getPasswordOptions()
   var possibleCharacters = []
-  var garantiedCharacters = []
+  var guarantiedCharacters = []
   var result = []
   if (userOptions.hasUpper) {
-    possibleCharacters = possibleCharacters.concat(upperCase)
+    possibleCharacters = possibleCharacters.concat(upperCase);
+    if (userOptions.hasLower) {
+      possibleCharacters = possibleCharacters.concat(lowerCase);
+      if (userOptions.hasNumber) {
+        possibleCharacters = possibleCharacters.concat(hasNumber);
+        if (userOptions.hasSpecial) {
+          possibleCharacters = possibleCharacters.concat(hasSpecial)
+        }
+      }
+    }
   }
-
-
-
-
-
-
-
+  
+  function generateRandomLetter() {
+  
+    return randomCharacter = upperCase[Math.floor(Math.random() * upperCase.length)]
+  }
 
 
 

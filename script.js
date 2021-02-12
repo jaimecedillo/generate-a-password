@@ -6,6 +6,7 @@ var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "~`! @#$%^&*()_-+={[}]|?".split("");
+
 function getPasswordOptions() {
   var passwordLength = parseInt(prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.'));
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
@@ -29,28 +30,40 @@ function getPasswordOptions() {
   }
   return userChoices;
 }
+
+function obtainRandom(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length)
+  var randomElement = arr[randomIndex]
+  return randomElement
+}
+
+
 function generatePassword() {
   var userOptions = getPasswordOptions()
   var possibleCharacters = []
-  var guarantiedCharacters = []
+  var confirmedCharacters = []
   var result = []
 
   if (userOptions.hasUpper) {
     possibleCharacters = possibleCharacters.concat(upperCase);
+    confirmedCharacters.push(obtainRandom(upperCase))
   }
 
   if (userOptions.hasLower) {
     possibleCharacters = possibleCharacters.concat(lowerCase);
+    confirmedCharacters.push(obtainRandom(lowerCase))
   }
 
   if (userOptions.hasNumber) {
     possibleCharacters = possibleCharacters.concat(hasNumber);
+    confirmedCharacters.push(obtainRandom(numbers))
   }
 
   if (userOptions.hasSpecial) {
     possibleCharacters = possibleCharacters.concat(hasSpecial);
+    confirmedCharacters.push(obtainRandom(specialCharacters))
   }
-  console.log(possibleCharacters)
+
 
 
   for (var i = 0; i < possibleCharacters; i++) {

@@ -1,27 +1,29 @@
 
-// Assignment code here
+// Arrays of all character options
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "~`! @#$%^&*()_-+={[}]|?".split("");
-
-
+// function to collect user's options
 function getPasswordOptions() {
+
+  // prompts to obtain user's options
   var passwordLength = parseInt(prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.'));
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert("Please select number within range")
     return
   }
 
-
   var wantsUpper = confirm('Would you like your password to have Uppercase letters?');
   var wantsLower = confirm('Would you like your password to have Lowercase letters?');
   var wantsNumber = confirm('Would you like your password to have Numbers?');
   var wantsSpecial = confirm('Would you like your password to have special characters?');
+  // alert user to seclect at least one option
   if (!wantsUpper && !wantsLower && !wantsNumber && !wantsSpecial) {
     alert("Please select at least one option");
     return
   }
+  // all of user's choices
   var userChoices = {
     length: passwordLength,
     hasUpper: wantsUpper,
@@ -31,14 +33,14 @@ function getPasswordOptions() {
   }
   return userChoices;
 }
-
+// function to get random characters
 function obtainRandom(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length)
   var randomElement = arr[randomIndex]
   return randomElement
 }
 
-
+// function to generate password with all of the users choices
 function generatePassword() {
   var userOptions = getPasswordOptions()
   var possibleCharacters = []
@@ -66,7 +68,7 @@ function generatePassword() {
   }
 
 
-
+  // for loop to get random characters
   for (i = 0; i < userOptions.length; i++) {
 
     var possibleCharacters = obtainRandom(possibleCharacters)
@@ -75,6 +77,7 @@ function generatePassword() {
   for (i = 0; i < confirmedCharacters.length; i++) {
     result[i] = confirmedCharacters[i]
   }
+  // returns the result
   return result.join("");
 }
 

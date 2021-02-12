@@ -1,25 +1,26 @@
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-// Assignment code here
 
+// Assignment code here
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 var numbers = "0123456789".split("");
 var specialCharacters = "~`! @#$%^&*()_-+={[}]|?".split("");
 
+
 function getPasswordOptions() {
   var passwordLength = parseInt(prompt('How long would you like your password to be? Limit 8 to 128 characters long. Please enter number desired.'));
   if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
-    alert("Select number within range")
-    return;
+    alert("Please select number within range")
+    return
   }
+
+
   var wantsUpper = confirm('Would you like your password to have Uppercase letters?');
   var wantsLower = confirm('Would you like your password to have Lowercase letters?');
   var wantsNumber = confirm('Would you like your password to have Numbers?');
   var wantsSpecial = confirm('Would you like your password to have special characters?');
   if (!wantsUpper && !wantsLower && !wantsNumber && !wantsSpecial) {
     alert("Please select at least one option");
-    return;
+    return
   }
   var userChoices = {
     length: passwordLength,
@@ -55,12 +56,12 @@ function generatePassword() {
   }
 
   if (userOptions.hasNumber) {
-    possibleCharacters = possibleCharacters.concat(hasNumber);
+    possibleCharacters = possibleCharacters.concat(numbers);
     confirmedCharacters.push(obtainRandom(numbers))
   }
 
   if (userOptions.hasSpecial) {
-    possibleCharacters = possibleCharacters.concat(hasSpecial);
+    possibleCharacters = possibleCharacters.concat(specialCharacters);
     confirmedCharacters.push(obtainRandom(specialCharacters))
   }
 
@@ -71,17 +72,23 @@ function generatePassword() {
     var possibleCharacters = obtainRandom(possibleCharacters)
     result.push(possibleCharacters)
   }
+  for (i = 0; i < confirmedCharacters.length; i++) {
+    result[i] = confirmedCharacters[i]
+  }
   return result.join("");
 }
 
+// Get references to the #generate element
+var generateButton = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+
   passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateButton.addEventListener("click", writePassword);
 

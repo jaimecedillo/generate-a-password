@@ -66,11 +66,12 @@ function generatePassword() {
 
 
 
-  for (var i = 0; i < possibleCharacters; i++) {
+  for (i = 0; i < userOptions.length; i++) {
 
-    userChoices.push(result[Math.floor(Math.random() * result.length)]);
+    var possibleCharacters = obtainRandom(possibleCharacters)
+    result.push(possibleCharacters)
   }
-  return userChoices.join("");
+  return result.join("");
 }
 
 

@@ -1,3 +1,4 @@
+
 # Generate a password
 Created to help the user create a random password to use
 
@@ -14,5 +15,5 @@ Created to help the user create a random password to use
 
 [Password Generator](https://jaimecedillo.github.io/generate-a-password/)
 
-![Application Screenshot](https://github.com/jaimecedillo/generate-a-password/blob/main/screenshot.png)
+![Application Screenshot](https://user-images.githubusercontent.com/74879881/120933588-024fd300-c6b8-11eb-9def-e3301f120713.png)
 
